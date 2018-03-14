@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const restaurantSchema = mongoose.Schema({
   id: {
-    type: String,
-    unique: true,
+    type: Number
   },
   name: String,
   tagline: String,
@@ -26,8 +25,13 @@ const insertMany = (restaurant, callback) => {
   RestaurantModel.insertMany(restaurant, callback);
 };
 
+const insertOne = (restaurant, callback) => {
+  RestaurantModel.collection.insertOne(restaurant, callback);
+}
+
 const count = () => RestaurantModel.count();
 
 exports.findOneById = findOneById;
 exports.insertMany = insertMany;
 exports.count = count;
+exports.insertOne = insertOne;

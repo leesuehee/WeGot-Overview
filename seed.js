@@ -4,7 +4,7 @@ const allRestaurantData = require('./finData.json');
 
 const dbAddress = process.env.DB_ADDRESS || 'localhost';
 
-mongoose.connect(`mongodb://${dbAddress}/weGotData`);
+mongoose.connect(`mongodb://${dbAddress}/WeGotData`);
 
 const seedDb = (data) => {
   db.count().then((counts) => {

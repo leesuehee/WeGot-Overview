@@ -7,7 +7,7 @@ const app = require('./app');
 const dbAddress = process.env.DB_ADDRESS || 'localhost';
 
 
-mongoose.connect(`mongodb://${dbAddress}/weGotData`);
+mongoose.connect(`mongodb://${dbAddress}/wegotdata`);
 // const compiler = webpack(config);
 
 // app.use(webpackDevMiddleware(compiler, {
