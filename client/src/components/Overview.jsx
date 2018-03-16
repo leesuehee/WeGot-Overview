@@ -9,7 +9,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderBool: false,
+      renderBool: true,
       restaurantTitle: 'Title Placeholder',
       restaurantTagline: 'Tagline Placeholder',
       restaurantType: 'Restaurant',
@@ -27,11 +27,15 @@ class Overview extends React.Component {
   }
 
   fetchRestaurantInfo() {
-    const id = window.location.href.split('/')[4];
+    // const id = window.location.href.split('/')[4];
+    // can i avoid use of API? 
 
-    axios.get(`/api/restaurants/${id}/overview`)
+
+    axios.get(`/api/restaurants/12/overview`)
       .then((response) => {
+        console.log('got', response)
         this.handleRestaurantChange(response.data[0]);
+        console.log(response)
       })
       .catch((err) => {
         console.log(err);
@@ -39,6 +43,7 @@ class Overview extends React.Component {
   }
 
   handleRestaurantChange(restaurantDetails) {
+    console.log('in handleRestaurantChange', restaurantDetails)
     let priceLevelInDollars = '';
     const priceLevel = restaurantDetails.priceLevel || 1;
     for (let i = 0; i < priceLevel; i += 1) {
