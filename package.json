@@ -8,7 +8,10 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start:mongo": "nodemon server/serverMongo.js",
+    "start:post": "nodemon server/serverPost.js",
+    "sql": "psql -U postgres -a -f db/pg.sql",
+    "seed-postgres":"psql -U postgres -a -f db/pg.sql && node --require dotenv/config db/pgDb.js",
     "dev-install": "yarn install--production",
     "dev": "webpack -d --watch",
     "test": "jest --coverage",
@@ -25,23 +28,27 @@
     "seed10": "node dataGenerator.js",
     "seed11": "node dataGenerator.js",
     "seed12": "node dataGenerator.js",
-
-    "work": "node seedWorker.js",
     "docker-start": "DB_ADDRESS=database node seed.js && DB_ADDRESS=database node server/server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "faker": "^4.1.0",
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.7",
     "morgan": "^1.9.0",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "pg-promise": "^5.9.7",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "sequelize": "^4.37.1"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.14.1",
