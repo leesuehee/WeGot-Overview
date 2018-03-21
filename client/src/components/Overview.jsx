@@ -28,10 +28,9 @@ class Overview extends React.Component {
 
   fetchRestaurantInfo() {
     // const id = window.location.href.split('/')[4];
-    // can i avoid use of API? 
+    let id = 18611;
 
-
-    axios.get(`/api/restaurants/12/overview`)
+    axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
         console.log('got', response)
         this.handleRestaurantChange(response.data[0]);

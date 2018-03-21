@@ -13,7 +13,7 @@ const actions = {
 };
 
 const requestHandler = (req, res) => {
-  if (actions[req.method]) {
+  if (actions[req.method]) {//a GET request
     actions[req.method](req, res);
   } else {
     res.sendStatus(404);
