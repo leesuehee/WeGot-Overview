@@ -28,7 +28,8 @@ class Overview extends React.Component {
 
   fetchRestaurantInfo() {
     // const id = window.location.href.split('/')[4];
-    let id = 18611;
+    let id = Math.floor(Math.random() * Math.floor(1000000));
+    console.log('id', id);
 
     axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
@@ -42,22 +43,17 @@ class Overview extends React.Component {
   }
 
   handleRestaurantChange(restaurantDetails) {
-    console.log('in handleRestaurantChange', restaurantDetails)
-    let priceLevelInDollars = '';
-    const priceLevel = restaurantDetails.priceLevel || 1;
-    for (let i = 0; i < priceLevel; i += 1) {
-      priceLevelInDollars += '$';
-    }
+    console.log('resaurantDetails', restaurantDetails)
     this.setState({
       renderBool: true,
-      restaurantTitle: restaurantDetails.name.toUpperCase(),
+      restaurantTitle: restaurantDetails.title,
       restaurantTagline: restaurantDetails.tagline,
       restaurantVicinity: restaurantDetails.vicinity,
-      restaurantPriceLevel: priceLevelInDollars,
-      weGotFoodRating: restaurantDetails.zagatFood,
-      weGotDecorRating: restaurantDetails.zagatDecor,
-      weGotServiceRating: restaurantDetails.zagatService,
-      restaurantDescription: restaurantDetails.longDescription,
+      restaurantPriceLevel: restaurantDetails.pricelevel,
+      weGotFoodRating: restaurantDetails.zagatfood,
+      weGotDecorRating: restaurantDetails.zagatdecor,
+      weGotServiceRating: restaurantDetails.zagatservice,
+      restaurantDescription: restaurantDetails.longdescription,
     });
   }
 

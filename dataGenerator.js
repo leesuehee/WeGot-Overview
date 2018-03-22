@@ -1,6 +1,6 @@
 const Faker = require('faker');
-const mongoose = require('mongoose');
-const dataB = require('./db/db.js');
+// const mongoose = require('mongoose');
+// const dataB = require('./db/db.js');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 const MongoClient = require('mongodb').MongoClient;
@@ -31,7 +31,7 @@ let random = (max) => {
 }
 
 let generateArrayOf10Batches = () => {
-  let rand = random(1000000)
+  let rand = random(10000)
   let batches = [];
   for (let i = 0; i < 50; i++){
     let tenK = generate10K(rand);

@@ -4,16 +4,16 @@ const faker = require('faker');
 const pgp = require('pg-promise')({
   capSQL : true
 });
-const password = process.env.DB_PASS;
+const password = process.env.PASS;
 const port = process.env.PORT;
 
-const connection = `postgres://suehee:monie@127.0.0.1:5432/wegotdata`;
+const connection = `postgres://suehee:${password}@127.0.0.1:${port}/wegotdata`;
 
 const db = pgp(connection);
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
-const start = new Date().getTime();
+const start = Date.now();
 
 let random = (max) => {
   return Math.floor(Math.random() * Math.floor(max))
@@ -24,12 +24,15 @@ let psqlDataGenerator = () => {
   let data = [];
   for (let i = 0; i < 10000; i++) {
     let restaurant = {
-      food: ((Math.random() * 5) + 1).toFixed(1),
-      decor: ((Math.random() * 5) + 1).toFixed(1),
-      price: ((Math.random() * 5) + 1).toFixed(1),
-      title: faker.lorem.word(),
-      tagline: faker.lorem.words(),
-      dis: faker.lorem.paragraph(),
+      title           : faker.lorem.word(),
+      zagatfood       : ((Math.random() * 5) + 1).toFixed(1),
+      zagatdecor      : ((Math.random() * 5) + 1).toFixed(1),
+      zagatservice    : ((Math.random() * 5) + 1).toFixed(1),
+      typeof          : faker.lorem.word(),
+      pricelevel      : ((Math.random() * 5) + 1).toFixed(1),
+      tagline         : faker.lorem.words(),
+      vicinity        : faker.address.city(),
+      longdescription : faker.lorem.paragraph(),
     }
     data.push(restaurant);
   }
@@ -40,7 +43,7 @@ let count = 10000000/numCPUs;
 
 let insertRestaurants = async() => {
   let multipleRestaurants = psqlDataGenerator();
-  const cs = new pgp.helpers.ColumnSet(['food','decor','price','title','tagline','dis'],
+  const cs = new pgp.helpers.ColumnSet(['title','zagatfood','zagatdecor','zagatservice','typeof','pricelevel','tagline','vicinity','longdescription'],
     {table: 'restaurant'});
   
   const query = pgp.helpers.insert(multipleRestaurants, cs);
