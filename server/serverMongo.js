@@ -1,32 +1,18 @@
+const mongoose = require('mongoose');
 // const webpack = require('webpack');
 // const webpackDevMiddleware = require('webpack-dev-middleware');
 // const config = require('../webpack.config.js');
-// const dbAddress = process.env.DB_ADDRESS || 'localhost';
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const handler = require('./routes/requestHandler.js');
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/wegotdata');
+const app = require('./app');
+// const app = require('./serverMongo.js');
+// const app = require('./serverPost.js');
 
-const app = express();
-
-app.use(express.static(__dirname + '/../client/dist'));
-app.use(cors());
-app.use(morgan('dev'));
+const dbAddress = process.env.DB_ADDRESS || 'localhost';
 
 
-app.get('/', (req, res) => {
-  res.redirect('/restaurants/ChIJUcXYWWGAhYARmjMY2bJAG2s');
-});
+mongoose.connect(`mongodb://localhost/wegotdata`);
 
-// app.use('/restaurants/:id', express.static('client/dist')); 
-app.get('/api/restaurants/:id/overview', handler.requestHandler);
-
-let port = 7000;
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(3002, () => {
+  console.log('Listening on port 3002');
 });
 
 // =============================================================== //

@@ -7,7 +7,8 @@ const pgp = require('pg-promise')({
 const password = process.env.DB_PASS;
 const port = process.env.PORT;
 
-const connection = `postgres://postgres:${password}@127.0.0.1:${port}/wegotdata`;
+const connection = `postgres://suehee:monie@127.0.0.1:5432/wegotdata`;
+
 const db = pgp(connection);
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;

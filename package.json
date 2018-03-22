@@ -10,12 +10,12 @@
   "scripts": {
     "start:mongo": "nodemon server/serverMongo.js",
     "start:post": "nodemon server/serverPost.js",
-    "sql": "psql -U postgres -a -f db/pg.sql",
-    "seed-postgres":"psql -U postgres -a -f db/pg.sql && node --require dotenv/config db/pgDb.js",
+    "seed-postgres": "psql -U postgres -a -f db/pg.sql && node --require dotenv/config db/pgDb.js",
+    "seed-pg": "psql -U postgres -a -f db/pg.sql && node db/pgDb.js",
     "dev-install": "yarn install--production",
     "dev": "webpack -d --watch",
     "test": "jest --coverage",
-    "seed": "npm run seed1 && npm run seed2 && npm run seed3 && npm run seed4 && npm run seed5 npm run seed6 && npm run seed7 && npm run seed8 && npm run seed9 && npm run seed10 && npm run seed11 && npm run seed12",
+    "seed": "npm run seed1 && npm run seed2 && npm run seed3 && npm run seed4 && npm run seed5 npm run seed6 && npm run seed7 && npm run seed8",
     "seed1": "node dataGenerator.js",
     "seed2": "node dataGenerator.js",
     "seed3": "node dataGenerator.js",
@@ -24,10 +24,6 @@
     "seed6": "node dataGenerator.js",
     "seed7": "node dataGenerator.js",
     "seed8": "node dataGenerator.js",
-    "seed9": "node dataGenerator.js",
-    "seed10": "node dataGenerator.js",
-    "seed11": "node dataGenerator.js",
-    "seed12": "node dataGenerator.js",
     "docker-start": "DB_ADDRESS=database node seed.js && DB_ADDRESS=database node server/server.js"
   },
   "dependencies": {
@@ -42,13 +38,12 @@
     "morgan": "^1.9.0",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
-    "pg-promise": "^5.9.7",
+    "pg-promise": "^8.2.2",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "request": "^2.83.0",
-    "sequelize": "^4.37.1"
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.14.1",
