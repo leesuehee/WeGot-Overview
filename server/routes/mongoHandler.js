@@ -12,12 +12,13 @@ const actions = {
   },
 };
 
-const requestHandler = (req, res) => {
-  if (actions[req.method]) {//a GET request
+const mongoHandler = (req, res) => {
+  if (actions[req.method]) {
     actions[req.method](req, res);
   } else {
     res.sendStatus(404);
   }
 };
 
-module.exports.requestHandler = requestHandler;
+module.exports.mongoHandler = mongoHandler;
+
