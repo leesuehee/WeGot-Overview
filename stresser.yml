@@ -1,0 +1,28 @@
+config:
+  http:
+    pool: 8 
+  target: "http://localhost:3002"
+  phases:
+    - duration: 10
+      arrivalRate: 10
+      rampTo: 30
+      name: "round 1"
+    - duration: 10
+      arrivalRate: 30 
+      rampTo: 50
+      name: "round 2"
+    - duration: 10
+      arrivalRate: 50  
+      rampTo: 70
+      name: "round 3"
+  processor: "./idGenerator.js"
+scenarios: 
+  - flow:
+    - loop: 
+      - function: "generateId"
+      - get: 
+          url: "/api/restaurants/{{ id }}/overview"
+          json:
+            id: "{{ id }}" 
+      count: 50
+    - log: "TESTING ID: {{ id }}"

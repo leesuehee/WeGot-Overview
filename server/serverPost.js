@@ -1,3 +1,4 @@
+require('newrelic');
 const papp = require('./papp');
 
 papp.listen(3002, () => {

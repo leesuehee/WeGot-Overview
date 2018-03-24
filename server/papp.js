@@ -9,7 +9,7 @@ papp.use(cors());
 papp.use(morgan('dev'));
 
 papp.get('/', (req, res) => {
-  res.redirect('/restaurants/1');
+  res.redirect(`/restaurants/1`);
 });
 
 papp.use('/restaurants/:id', express.static('client/dist')); 

@@ -30,7 +30,6 @@ class Overview extends React.Component {
     // let id = Math.floor(Math.random() * Math.floor(1000000));
     let context = this;
     let id = window.location.href.split('/')[4];
-    console.log('IM ID......',id);
 
     axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
