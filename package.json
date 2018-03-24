@@ -8,15 +8,14 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "start:mongo": "nodemon server/serverMongo.js",
-    "start:post": "nodemon server/serverPost.js",
-    "seed-postgres": "psql -U postgres -a -f db/pg.sql && node --require dotenv/config db/pgDb.js",
+    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit",
+    "start": "nodemon server/serverPost.js",
     "seed-pg": "psql -U postgres -a -f db/pg.sql && node db/pgDb.js",
     "dev-install": "yarn install--production",
     "dev": "webpack -d --watch",
     "test": "jest --coverage",
-    "seed": "npm run seed1 && npm run seed2 && npm run seed3 && npm run seed4 && npm run seed5 npm run seed6 && npm run seed7 && npm run seed8",
-    "seed1": "node dataGenerator.js",
+    "seed": "npm run seed1 && npm run seed2 && npm run seed3 && npm run seed4 && npm run seed5 npm run seed6 && npm run seed7 && npm run seed8 && npm run seed9 && npm run seed10",
+    "seed1": "node --max-old-space-size=16000 dataGenerator.js",
     "seed2": "node dataGenerator.js",
     "seed3": "node dataGenerator.js",
     "seed4": "node dataGenerator.js",
@@ -24,9 +23,13 @@
     "seed6": "node dataGenerator.js",
     "seed7": "node dataGenerator.js",
     "seed8": "node dataGenerator.js",
+    "seed9": "node dataGenerator.js",
+    "seed10": "node dataGenerator.js",
     "docker-start": "DB_ADDRESS=database node seed.js && DB_ADDRESS=database node server/server.js"
   },
   "dependencies": {
+    "increase-memory-limit": "^1.0.6",
+    "cross-env": "^5.0.5",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "cors": "^2.8.4",

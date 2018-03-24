@@ -5,10 +5,13 @@ CREATE DATABASE wegotdata;
 
 CREATE TABLE restaurant (
   ID SERIAL PRIMARY KEY NOT NULL,
-  food DECIMAL,
-  decor DECIMAL,
-  price VARCHAR,
-  title VARCHAR NOT NULL,
+  title VARCHAR,
+  zagatfood DECIMAL,
+  zagatdecor DECIMAL,
+  zagatservice DECIMAL,
+  typeof VARCHAR,
+  pricelevel VARCHAR,
   tagline VARCHAR,
-  dis TEXT
-  );
+  vicinity VARCHAR,
+  longdescription TEXT
+  )

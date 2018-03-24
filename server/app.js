@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const handler = require('./routes/requestHandler.js');
+const handler = require('./routes/mongoHandler.js');
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/restaurants/:id', express.static('client/dist'));
-app.get('/api/restaurants/:id/overview', handler.requestHandler);
+app.get('/api/restaurants/:id/overview', handler.mongoHandler);
 
 module.exports = app;
 
