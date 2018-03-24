@@ -9,7 +9,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderBool: true,
+      renderBool: false,
       restaurantTitle: 'Title Placeholder',
       restaurantTagline: 'Tagline Placeholder',
       restaurantType: 'Restaurant',
@@ -26,24 +26,23 @@ class Overview extends React.Component {
     this.fetchRestaurantInfo();
   }
 
-  fetchRestaurantInfo() {
-    // const id = window.location.href.split('/')[4];
-    let id = Math.floor(Math.random() * Math.floor(1000000));
-    console.log('id', id);
+  fetchRestaurantInfo () {
+    // let id = Math.floor(Math.random() * Math.floor(1000000));
+    let context = this;
+    let id = window.location.href.split('/')[4];
+    console.log('IM ID......',id);
 
     axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
-        console.log('got', response)
         this.handleRestaurantChange(response.data[0]);
-        console.log(response)
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   handleRestaurantChange(restaurantDetails) {
-    console.log('resaurantDetails', restaurantDetails)
+    console.log('restaurantDetails', restaurantDetails)
     this.setState({
       renderBool: true,
       restaurantTitle: restaurantDetails.title,
