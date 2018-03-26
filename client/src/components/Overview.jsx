@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import BasicDetails from './BasicDetails';
-import DividerLine from './WeGotDividerLine';
-import WeGotReview from './WeGotReview';
-import LongDescription from './LongDescription';
+import BasicDetails from './BasicDetails.jsx';
+import DividerLine from './WeGotDividerLine.jsx';
+import WeGotReview from './WeGotReview.jsx';
+import LongDescription from './LongDescription.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -20,14 +20,13 @@ class Overview extends React.Component {
       weGotServiceRating: '3.3',
       restaurantDescription: 'Description Placeholder',
     };
-  }
+  };
 
   componentDidMount() {
     this.fetchRestaurantInfo();
   }
 
   fetchRestaurantInfo () {
-    // let id = Math.floor(Math.random() * Math.floor(1000000));
     let context = this;
     let id = window.location.href.split('/')[4];
 
@@ -41,7 +40,6 @@ class Overview extends React.Component {
   };
 
   handleRestaurantChange(restaurantDetails) {
-    console.log('restaurantDetails', restaurantDetails)
     this.setState({
       renderBool: true,
       restaurantTitle: restaurantDetails.title,
