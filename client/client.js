@@ -1,3 +1,4 @@
-import Overview from './src/components/Overview.jsx';
+import Overview from './components/Overview.jsx';
+import './style.css';
 
 window.Overview = Overview;

@@ -25,12 +25,10 @@ const actions = {
 };
 
 const pgHandler = (req, res) => {
-  console.log('moniee');
   if (actions[req.method]) {
     actions[req.method](req, res);
   } else {
     res.sendStatus(404);
-    // res.send('haii')
   }
 };
 

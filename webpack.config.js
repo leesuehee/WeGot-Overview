@@ -1,9 +1,18 @@
+const webpack = require('webpack');
 const path = require('path');
-const SRC_DIR = path.join(__dirname, '/client/src');
-const DIST_DIR = path.join(__dirname, '../proxy-sue/public/service');
 
 const common = {
   context: __dirname + '/client',
+  resolve: {
+    extensions: ['.js','.jsx']
+  }
+};
+const client = {
+entry: './client.js',
+  output: {
+    path: __dirname + '/public',
+    filename: 'bundle.js'
+  },
   module: {
     loaders: [
       {
@@ -11,21 +20,19 @@ const common = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'env']
-        },
+          presets: ['react', 'es2015', 'env']
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       },
     ],
-  }
-};
-
-const client = {
-entry: './client.js',
-  output: {
-    path: __dirname + '/public',
-    filename: 'bundle.js'
-  }  
+  },  
 };  
-
 const server = {
   entry: './server.js',
   target: 'node',
@@ -33,15 +40,30 @@ const server = {
     path: __dirname + '/public',
     filename: 'bundle-server.js',
     libraryTarget: 'commonjs-module'
-  }  
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'env']
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'css-loader'
+        ]
+      },
+    ],
+  },  
 };  
-
 module.exports = [
   Object.assign({}, common, client),
   Object.assign({}, common, server)
 ];  
-
-
 // original build
 // module.exports = {
 //   resolve: {

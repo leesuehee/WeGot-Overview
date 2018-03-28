@@ -5,7 +5,7 @@ import DividerLine from './WeGotDividerLine.jsx';
 import WeGotReview from './WeGotReview.jsx';
 import LongDescription from './LongDescription.jsx';
 
-class Overview extends React.Component {
+export default class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,10 +28,11 @@ class Overview extends React.Component {
 
   fetchRestaurantInfo () {
     let context = this;
-    let id = window.location.href.split('/')[4];
-
+    // let id = window.location.href.split('/')[4];
+    let id = this.props.id || window.location.href.split('/')[4]; 
     axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
+
         this.handleRestaurantChange(response.data[0]);
       })
       .catch((err) => {
@@ -79,7 +80,6 @@ class Overview extends React.Component {
     }
     return <div>Loading Restaurant Info...</div>;
   }
-}
+};
 
-
-export default Overview;
+// export default Overview;
