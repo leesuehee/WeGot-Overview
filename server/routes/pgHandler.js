@@ -13,8 +13,6 @@ const start = Date.now();
 
 const actions = {
   GET: function respondToGETRequest(req, res) {
-    console.log('methods',req.params.id);
-
     db.any(`SELECT * FROM restaurant WHERE ID=${req.params.id}`)
       .then((data) => {
         console.log('QUERIED:',data)

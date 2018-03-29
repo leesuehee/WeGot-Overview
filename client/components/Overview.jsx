@@ -1,15 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import BasicDetails from './BasicDetails';
-import DividerLine from './WeGotDividerLine';
-import WeGotReview from './WeGotReview';
-import LongDescription from './LongDescription';
+import BasicDetails from './BasicDetails.jsx';
+import DividerLine from './WeGotDividerLine.jsx';
+import WeGotReview from './WeGotReview.jsx';
+import LongDescription from './LongDescription.jsx';
 
-class Overview extends React.Component {
+export default class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderBool: true,
+      renderBool: false,
       restaurantTitle: 'Title Placeholder',
       restaurantTagline: 'Tagline Placeholder',
       restaurantType: 'Restaurant',
@@ -20,30 +20,27 @@ class Overview extends React.Component {
       weGotServiceRating: '3.3',
       restaurantDescription: 'Description Placeholder',
     };
-  }
+  };
 
   componentDidMount() {
     this.fetchRestaurantInfo();
   }
 
-  fetchRestaurantInfo() {
-    // const id = window.location.href.split('/')[4];
-    let id = Math.floor(Math.random() * Math.floor(1000000));
-    console.log('id', id);
-
+  fetchRestaurantInfo () {
+    let context = this;
+    // let id = window.location.href.split('/')[4];
+    let id = this.props.id || window.location.href.split('/')[4]; 
     axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
-        console.log('got', response)
+
         this.handleRestaurantChange(response.data[0]);
-        console.log(response)
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   handleRestaurantChange(restaurantDetails) {
-    console.log('resaurantDetails', restaurantDetails)
     this.setState({
       renderBool: true,
       restaurantTitle: restaurantDetails.title,
@@ -83,7 +80,6 @@ class Overview extends React.Component {
     }
     return <div>Loading Restaurant Info...</div>;
   }
-}
+};
 
-
-export default Overview;
+// export default Overview;
