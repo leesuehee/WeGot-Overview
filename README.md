@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # WeGot - Restaurant Rating Service
 
 > This project is a limited emulation Zagat.com's restaurant description page
@@ -45,3 +46,6 @@ Spin up mongo on your computer and then: npm run seed OR yarn seed
 ```
 
 
+=======
+# WeGot-Overview
+>>>>>>> 096330d78d8c6650fe7344bd16ed67598976d918
