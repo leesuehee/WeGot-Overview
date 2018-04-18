@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-# WeGot - Restaurant Rating Service
+# WeGot - Restaurant Rating Service 
 
-> This project is a limited emulation Zagat.com's restaurant description page
+ This project optimizes an inherited Restaurant Rating Application to handle production scale traffic.  
+ It utilizes a proxy server that performs server side rendering and can handle up to 2000 requests per second  
 
 ## Related Projects
 
@@ -38,14 +38,11 @@ This project is no longer using webpack-dev-middleware!!! You need to run webpac
 ### Installing Dependencies
 
 From within the root directory:
-```sh
-Install dependencies: npm install OR yarn install
-Start webpack: npm run dev OR yarn dev
-Start server: npm start OR yarn start
-Spin up mongo on your computer and then: npm run seed OR yarn seed
-```
+Install dependencies by running "npm install"
+Start webpack using "npm run dev" 
+Spin up server with "npm run start" 
 
+### Seeding Database
 
-=======
-# WeGot-Overview
->>>>>>> 096330d78d8c6650fe7344bd16ed67598976d918
+From within the root directory:
+execute "npm run seed-pg" the seeding process should take around 5 minutes and will insert 10million data points into a PostgreSQL 
